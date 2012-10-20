@@ -12,14 +12,15 @@ io.sockets.on('connection', function (socket) {
 });
 
 app.use(express.cookieParser());
-app.use(express.session({secret: 'pandas'}));
+//app.use(express.session({secret: 'helloooo'}));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res, next) {
+  //req.session.touch();
   res.render('index.ejs', {layout: false});
-  res.end();
+  res.end('hello');
 });
 
 app.listen(3000, function() {
-    console.log('Now listening on port 3000');    
+  console.log('Now listening on port 3000');    
 });
