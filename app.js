@@ -7,7 +7,7 @@ var io      = require('socket.io').listen(app, {log: false});
 io.sockets.on('connection', function (socket) {
   console.log('Drawer named ' + socket.id + ' has joined the session.');
   socket.on('canvas change', function (data) {
-    socket.broadcast.emit('others canvas change', data);
+    socket.broadcast.emit('other canvas change', data);
   });
 });
 

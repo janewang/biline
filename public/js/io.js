@@ -1,9 +1,7 @@
 var socket = io.connect('http://' + window.location.hostname);
 
-socket.emit('canvas change', function(data) {
-  // emit self canvas change to server
-});
-
-socket.on('others canvas change', function(data) {
-  // draw other players movements
+socket.on('other canvas change', function(data) {
+  console.log('other drawers positions');
+  console.log(data);
+  // redraw other players position in current canvas
 });

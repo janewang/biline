@@ -46,6 +46,8 @@ function onMouseDrag(event) {
   path.smooth();
 
   lastPoint = event.middlePoint;
+  console.log(lastPoint);
+  socket.emit('canvas change', lastPoint);
 }
 
 function onMouseUp(event) {
@@ -71,5 +73,3 @@ function addStrokes(point, delta) {
     path.insert(0, strokePoint);
   }
 }
-
-
