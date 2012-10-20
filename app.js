@@ -12,7 +12,7 @@ io.sockets.on('connection', function (socket) {
 });
 
 app.use(express.cookieParser());
-app.use(express.session({secret: 'pandas'}));
+//app.use(express.session({secret: 'pandas'}));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res, next) {
