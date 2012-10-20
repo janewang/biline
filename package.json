@@ -7,7 +7,8 @@
     "npm": "1.1.36"
   },
   "dependencies": {
-    "ejs": "*"
+    "ejs": "*",
+    "socket.io": "0.9.6"
   }
 }
 
