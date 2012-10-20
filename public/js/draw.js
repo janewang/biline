@@ -8,9 +8,14 @@ tool.fixedDistance = 80;
 var path;
 var strokeEnds = 0.5;
 
+function prevent(e) {
+  e.preventDefault();
+}
+
 function onMouseDown(event) {
+  prevent(event);
   path = new Path();
-  path.fillColor = event.count % 2 ? 'red' : 'black';
+  path.fillColor = 'black';
 }
 
 var lastPoint;
@@ -27,13 +32,13 @@ function onMouseDrag(event) {
     //   -----*
     //   |
     //   ------
-    var top = event.middlePoint + step;
+    var top = event.middlePoint + 10;//step;
 
     // The bottom point: the middle point - the step rotated by 90 degrees:
     //   ------
     //   |
     //   -----*
-    var bottom = event.middlePoint - step;
+    var bottom = event.middlePoint - 10;//step;
 
     path.add(top);
     path.insert(0, bottom);
@@ -66,3 +71,5 @@ function addStrokes(point, delta) {
     path.insert(0, strokePoint);
   }
 }
+
+
