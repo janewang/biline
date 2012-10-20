@@ -1,10 +1,15 @@
 Biline
 ======
 
-Real-time collaborative drawing app. One stroke each; variations in shades of gray and thickness. Save them and make a collage
+## Drawing inspired by Japanese Zen Koan
 
-Requirements (subject to change)
+![zenkoan](https://github.com/janewang/biline/raw/master/public/img/zenkoan.jpeg)
+
+Using simple brushstrokes, Biline is a real-time collaborative drawing application. 
+
+Requirements:
 - Express (version 2.5.11)
 - Jade
 - Touchy.js
+- Paper.js
 
