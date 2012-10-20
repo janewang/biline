@@ -30,6 +30,11 @@ function onMouseDrag(event) {
   // If this is the first drag event, add the strokes at the start:
   if (event.count == 1) {
     addStrokes(event.middlePoint, event.delta * -1);
+    dataForServer = {
+      middlePoint: event.middlePoint,
+      delta: event.delta
+    }
+    socket.emit('canvas change', dataForServer);
   } else {
     var step = event.delta / 2;
     step.angle += 90;
@@ -46,21 +51,28 @@ function onMouseDrag(event) {
   path.smooth();
   lastPoint = event.middlePoint;
   dataForServer = {
-    x: lastPoint.x,
-    y: lastPoint.y,
+    lastPoint: lastPoint,
+    topPoint: top,
+    bottomPoint: bottom,
     type: 'mousedrag'
   }
   socket.emit('canvas change', dataForServer);
 }
 
 function onMouseUp(event) {
-  dataForServer = {
-    type: 'mouseup'
-  }
-  socket.emit('canvas change', dataForServer);
   var delta = event.point - lastPoint;
   delta.length = tool.maxDistance;
   addStrokes(event.point, delta);
+
+  dataForServer = {
+    lastPoint: lastPoint,
+    eventPoint: event.point,
+    delta: delta,
+    type: 'mouseup'
+  }
+  socket.emit('canvas change', dataForServer);
+
+
   path.closed = true;
   path.smooth();
 }
