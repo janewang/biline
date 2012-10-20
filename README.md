@@ -1,11 +1,12 @@
 Biline
 ======
 
-## Drawing inspired by Japanese Zen Koan
+### Using simple brushstrokes, Biline is a real-time collaborative drawing application. 
+
+#### Drawing inspired by Japanese Zen Koan
 
 ![zenkoan](https://github.com/janewang/biline/raw/master/public/img/zenkoan.jpeg)
 
-Using simple brushstrokes, Biline is a real-time collaborative drawing application. 
 
 Requirements:
 - Express (version 2.5.11)
