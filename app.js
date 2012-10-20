@@ -9,6 +9,10 @@ io.sockets.on('connection', function (socket) {
   socket.on('canvas change', function (data) {
     socket.broadcast.emit('other canvas change', data);
   });
+
+  socket.on('disconnect', function() {
+    console.log('Drawer named ' + socket.id + ' has disconnected.');
+  });
 });
 
 app.use(express.cookieParser());
