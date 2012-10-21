@@ -18,6 +18,8 @@ var lastPoint;
 
 function onMouseDrag(data) {
   if (data.count == 1) {
+    console.log('this is receiver');
+    console.log(data.delta);
     addStrokes(data.middlePoint, data.delta * -1);
   }
   else {
@@ -30,10 +32,12 @@ function onMouseDrag(data) {
   lastPoint = data.lastPoint;
 }
 
+// this is currently not called ever
 function onMouseUp(data) {
-  var delta = data.delta;
+  console.log(data.evenPoint);
+  var delta = data.eventPoint - lastPoint;
   delta.length = tool.maxDistance;
-  addStrokes(data.eventPoint, data.eventPoint * -1);
+  addStrokes(data.eventPoint, delta);
   path.closed = true;
   path.smooth();
 }

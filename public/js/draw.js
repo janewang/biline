@@ -5,6 +5,18 @@
 
 tool.fixedDistance = 80;
 
+var text = new PointText(new Point(80, 130));
+text.justification = 'center';
+text.fillColor = 'black';
+text.content = 'Biline';
+text.characterStyle = {
+  fontSize: 20,
+  fillColor: 'black'
+}
+var circle = new Path.Circle(new Point(80, 58), 30);
+circle.strokeColor = 'black';
+circle.strokeWidth = 15;
+
 var path;
 var strokeEnds = 0.5;
 var dataForServer;
@@ -29,6 +41,8 @@ var lastPoint;
 function onMouseDrag(event) {
   // If this is the first drag event, add the strokes at the start:
   if (event.count == 1) {
+    console.log('this is sender');
+    console.log(event.delta);
     addStrokes(event.middlePoint, event.delta * -1);
     dataForServer = {
       middlePoint: event.middlePoint,
@@ -36,6 +50,7 @@ function onMouseDrag(event) {
       count: 1,
       type: 'mousedrag'
     }
+    //socket.emit('canvas change', dataForServer);
   } else {
     var step = event.delta / 2;
     //step.angle += 90;
@@ -63,23 +78,22 @@ function onMouseDrag(event) {
   path.smooth();
   lastPoint = event.middlePoint;
 }
-
+/*
 function onMouseUp(event) {
+  console.log(event.point);
   var delta = event.point - lastPoint;
   delta.length = tool.maxDistance;
   addStrokes(event.point, delta);
 
   dataForServer = {
-    lastPoint: lastPoint,
     eventPoint: event.point,
-    delta: delta,
     type: 'mouseup'
   }
 
   path.closed = true;
-  //path.smooth();
+  path.smooth();
 }
-
+*/
 function addStrokes(point, delta) {
   var step = delta;
   var strokePoints = strokeEnds * 2 + 1;
