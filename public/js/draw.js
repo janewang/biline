@@ -47,19 +47,22 @@ function onMouseDrag(event) {
     // The bottom point: the middle point - the step rotated by 90 degrees:
     var bottom = event.middlePoint - 10;//step;
 
+    dataForServer = {
+      step: step,
+      lastPoint: lastPoint,
+      topPoint: top,
+      bottomPoint: bottom,
+      count: event.count,
+      type: 'mousedrag'
+    }
+    socket.emit('canvas change', dataForServer);
+
     path.add(top);
     path.insert(0, bottom);
+
   }
   path.smooth();
   lastPoint = event.middlePoint;
-  dataForServer = {
-    lastPoint: lastPoint,
-    topPoint: top,
-    bottomPoint: bottom,
-    count: event.count,
-    type: 'mousedrag'
-  }
-  socket.emit('canvas change', dataForServer);
 }
 
 function onMouseUp(event) {
