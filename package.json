@@ -1,11 +1,7 @@
 {
   "name": "biline",
-  "version": "0.0.1",
+  "version": "0.0.1-1",
   "private": true,
-  "engine": {
-    "node": "0.8.2",
-    "npm": "1.1.36"
-  },
   "scripts": {
     "start": "node app.js"
   },
@@ -13,5 +9,10 @@
     "express": "2.5.11",
     "ejs": "0.8.3",
     "socket.io": "0.9.10"
+  },
+  "subdomain": "janewang.biline",
+  "engines": {
+    "node": "0.6.x",
+    "npm": "1.1.36"
   }
 }
