@@ -1,6 +1,6 @@
-Biline
+bi-line
 ======
-## Using simple brushstrokes, Biline is a real-time collaborative drawing application. 
+## Using simple brushstrokes, bi-line is a real-time collaborative drawing application. 
 
 ![zenkoan](https://github.com/janewang/biline/raw/master/public/img/zenkoan.jpeg)
 
