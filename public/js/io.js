@@ -1,15 +1,17 @@
 var socket = io.connect('http://' + window.location.hostname);
-var canvas = document.getElementById('#canvas');
+var canvas = document.getElementById('canvas');
+paper.install(window);
 paper.setup(canvas);
 
-var tool = new paper.Tool();
+//var tool = new paper.Tool();
+var tool = new Tool();
 tool.fixedDistance = 80;
 
 var strokeEnds = 0.5;
 var path;
 
 function onMouseDown() {
-  path = new paper.Path();
+  path = new Path();
   path.fillColor = 'red'; // other players strokes are red
 }
 
