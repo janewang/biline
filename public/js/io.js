@@ -2,6 +2,9 @@ var socket = io.connect('http://' + window.location.hostname);
 var canvas = document.getElementById('#canvas');
 paper.setup(canvas);
 
+var tool = new paper.Tool();
+tool.fixedDistance = 80;
+
 var strokeEnds = 0.5;
 var path;
 
@@ -28,7 +31,7 @@ function onMouseDrag(data) {
 
 function onMouseUp(data) {
   var delta = data.delta;
-  delta.length = data.length;
+  delta.length = tool.maxDistance;
   addStrokes(data.eventPoint, data.delta);
   path.closed = true;
   path.smooth();

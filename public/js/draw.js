@@ -74,7 +74,6 @@ function onMouseUp(event) {
     lastPoint: lastPoint,
     eventPoint: event.point,
     delta: delta,
-    length: delta.length,
     type: 'mouseup'
   }
   socket.emit('canvas change', dataForServer);
