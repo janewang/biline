@@ -3,7 +3,6 @@ var canvas = document.getElementById('canvas');
 paper.install(window);
 paper.setup(canvas);
 
-//var tool = new paper.Tool();
 var tool = new Tool();
 tool.fixedDistance = 80;
 
@@ -23,7 +22,7 @@ function onMouseDrag(data) {
   }
   else {
     var step = data.step;
-    step.angle += 90;
+    //step.angle += 90;
     path.add(data.topPoint);
     path.insert(0, data.bottomPoint);
   }
@@ -34,7 +33,7 @@ function onMouseDrag(data) {
 function onMouseUp(data) {
   var delta = data.delta;
   delta.length = tool.maxDistance;
-  addStrokes(data.eventPoint, data.delta);
+  addStrokes(data.eventPoint, data.eventPoint * -1);
   path.closed = true;
   path.smooth();
 }

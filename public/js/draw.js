@@ -33,13 +33,12 @@ function onMouseDrag(event) {
     dataForServer = {
       middlePoint: event.middlePoint,
       delta: event.delta,
-      count: event.count,
+      count: 1,
       type: 'mousedrag'
     }
-    socket.emit('canvas change', dataForServer);
   } else {
     var step = event.delta / 2;
-    step.angle += 90;
+    //step.angle += 90;
 
     // The top point: the middle point + the step rotated by 90 degrees:
     var top = event.middlePoint + 10;//step;
@@ -76,10 +75,9 @@ function onMouseUp(event) {
     delta: delta,
     type: 'mouseup'
   }
-  socket.emit('canvas change', dataForServer);
 
   path.closed = true;
-  path.smooth();
+  //path.smooth();
 }
 
 function addStrokes(point, delta) {
