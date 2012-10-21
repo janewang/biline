@@ -41,8 +41,6 @@ var lastPoint;
 function onMouseDrag(event) {
   // If this is the first drag event, add the strokes at the start:
   if (event.count == 1) {
-    console.log('this is sender');
-    console.log(event.delta);
     addStrokes(event.middlePoint, event.delta * -1);
     dataForServer = {
       middlePoint: event.middlePoint,
@@ -80,7 +78,7 @@ function onMouseDrag(event) {
 }
 /*
 function onMouseUp(event) {
-  console.log(event.point);
+    console.log(event.point);
   var delta = event.point - lastPoint;
   delta.length = tool.maxDistance;
   addStrokes(event.point, delta);

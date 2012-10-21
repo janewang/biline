@@ -18,8 +18,6 @@ var lastPoint;
 
 function onMouseDrag(data) {
   if (data.count == 1) {
-    console.log('this is receiver');
-    console.log(data.delta);
     addStrokes(data.middlePoint, data.delta * -1);
   }
   else {
@@ -34,7 +32,6 @@ function onMouseDrag(data) {
 
 // this is currently not called ever
 function onMouseUp(data) {
-  console.log(data.evenPoint);
   var delta = data.eventPoint - lastPoint;
   delta.length = tool.maxDistance;
   addStrokes(data.eventPoint, delta);

@@ -1,8 +1,14 @@
-#!/usr/local/bin/node
 
-var express = require('express');
-var app     = express.createServer();
-var io      = require('socket.io').listen(app, {log: false});
+/**
+ * Module dependencies.
+ */
+
+var express = require('express')
+  , routes = require('./routes')
+  , http = require('http');
+
+var app = express.createServer();
+var io = require('socket.io').listen(app, {log: false});
 
 io.sockets.on('connection', function (socket) {
   console.log('Drawer named ' + socket.id + ' has joined the session.');
@@ -15,15 +21,28 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-app.use(express.cookieParser());
-//app.use(express.session({secret: 'pandas'}));
-app.use(express.static(__dirname + '/public'));
+app.configure(function(){
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(express.cookieParser('keyboardcatz'));
+  //app.use(express.session({secret: 'panda'}));
+  app.use(express.static(__dirname + '/public'));
+});
+
+app.configure('development', function(){
+  app.use(express.errorHandler());
+});
 
 app.get('/', function(req, res, next) {
-  res.render('index.ejs', {layout: false});
+  res.render('index', {layout: false});
   res.end();
 });
 
 app.listen(3000, function() {
-    console.log('Now listening on port 3000');    
+    console.log('Server listening on port 3000');    
 });

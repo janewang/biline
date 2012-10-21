@@ -2,14 +2,16 @@
   "name": "biline",
   "version": "0.0.1",
   "private": true,
-  "engines": {
+  "engine": {
     "node": "0.8.2",
     "npm": "1.1.36"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "express": "2.5.11",
-    "ejs": "*",
+    "ejs": "0.8.3",
     "socket.io": "0.9.10"
   }
 }
-
