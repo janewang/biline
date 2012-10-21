@@ -8,7 +8,7 @@ tool.fixedDistance = 80;
 var text = new PointText(new Point(80, 130));
 text.justification = 'center';
 text.fillColor = 'black';
-text.content = 'Biline';
+text.content = 'bi-line';
 text.characterStyle = {
   fontSize: 20,
   fillColor: 'black'
