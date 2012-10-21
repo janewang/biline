@@ -20,9 +20,8 @@ app.use(express.cookieParser());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res, next) {
-  //req.session.touch();
   res.render('index.ejs', {layout: false});
-  res.end('hello');
+  res.end();
 });
 
 app.listen(3000, function() {
