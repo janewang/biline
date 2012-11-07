@@ -12,3 +12,5 @@ Requirements:
 - Jade
 - Touchy.js
 - Paper.js
+
+Winners from Onswipe: http://bit.ly/TOJi0k
