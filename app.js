@@ -10,6 +10,11 @@ var express = require('express')
 var app = express.createServer();
 var io = require('socket.io').listen(app, {log: false});
 
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
 io.sockets.on('connection', function (socket) {
   console.log('Drawer named ' + socket.id + ' has joined the session.');
   socket.on('canvas change', function (data) {
