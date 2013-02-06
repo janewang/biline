@@ -10,8 +10,8 @@
     "ejs": "0.8.3",
     "socket.io": "0.9.11"
   },
-  "subdomain": "biline",
   "engines": {
-    "node": "0.8.x"
+    "node": "0.8.14",
+    "npm": "1.1.65"
   }
 }
