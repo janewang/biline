@@ -44,6 +44,12 @@ server.listen(app.get('port'), function() {
 
 var io = sio.listen(server, {log: false});
 
+// assuming io is the Socket.IO server object - for Heroku only
+io.configure(function () { 
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
+});
+
 io.sockets.on('connection', function (socket) {
   console.log('Drawer named ' + socket.id + ' has joined the session.');
   socket.on('canvas change', function (data) {
