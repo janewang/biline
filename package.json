@@ -1,18 +1,17 @@
 {
   "name": "biline",
-  "version": "0.0.1-2",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "2.5.11",
+    "express": "3.1.0",
     "ejs": "0.8.3",
-    "socket.io": "0.9.10"
+    "socket.io": "0.9.11"
   },
-  "subdomain": "janewang.biline",
+  "subdomain": "biline",
   "engines": {
-    "node": "0.6.x",
-    "npm": "1.1.36"
+    "node": "0.8.x"
   }
 }

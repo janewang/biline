@@ -5,21 +5,10 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , http = require('http');
+  , http = require('http')
+  , sio = require('socket.io');
 
-var app = express.createServer();
-var io = require('socket.io').listen(app, {log: false});
-
-io.sockets.on('connection', function (socket) {
-  console.log('Drawer named ' + socket.id + ' has joined the session.');
-  socket.on('canvas change', function (data) {
-    socket.broadcast.emit('other canvas change', data);
-  });
-
-  socket.on('disconnect', function() {
-    console.log('Drawer named ' + socket.id + ' has disconnected.');
-  });
-});
+var app = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -38,11 +27,35 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.configure('production', function(){
+  app.use(express.errorHandler());
+});
+
 app.get('/', function(req, res, next) {
   res.render('index', {layout: false});
   res.end();
 });
 
-app.listen(3000, function() {
-    console.log('Server listening on port 3000');    
+var server = http.createServer(app);
+
+server.listen(app.get('port'), function() {
+    console.log('Server listening %d', app.get('port'));    
+});
+
+var io = sio.listen(server, {log: false});
+
+io.sockets.on('connection', function (socket) {
+  console.log('Drawer named ' + socket.id + ' has joined the session.');
+  socket.on('canvas change', function (data) {
+    socket.broadcast.emit('other canvas change', data);
+  });
+
+  socket.on('disconnect', function() {
+    console.log('Drawer named ' + socket.id + ' has disconnected.');
+  });
+});
+
+app.get('/', function(req, res, next) {
+  res.render('index', {layout: false});
+  res.end();
 });
